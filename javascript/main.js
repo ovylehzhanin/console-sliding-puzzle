@@ -1,18 +1,18 @@
 window.onload = function() {
 	/* Use static array for testing */
-	var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "_"];
+	var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "  "];
 	/* Need to optimize it!!! */
 	var cols = Math.sqrt(testArr.length);
 
 	function makeMove(e) {
-		var position = testArr.indexOf("_");
+		var position = testArr.indexOf("  ");
 
 		switch(e.keyCode) {
 			case 37: // key LEFT
 				testArr.swap(position, (position + 1)%cols ? position + 1 : position);
 				break;
 			case 38: // key UP
-				testArr.swap(position, (position + 4) > testArr.length ? position : position + 4);
+				testArr.swap(position, (position + 4) >= testArr.length ? position : position + 4);
 				break;
 			case 39: // key RIGHT
 				testArr.swap(position, position%cols ? position - 1 : position);
