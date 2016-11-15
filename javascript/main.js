@@ -1,11 +1,10 @@
 window.onload = function() {
-	/* Use static array for testing */
-	var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "  "];
-	/* Need to optimize it!!! */
-	var cols = Math.sqrt(testArr.length);
+	
+	var cols = 4; // 
+	var testArr = prepareArray(cols);
 
 	function makeMove(e) {
-		var position = testArr.indexOf("  ");
+		var position = testArr.indexOf('  ');
 
 		switch(e.keyCode) {
 			case 37: // key LEFT
@@ -17,7 +16,7 @@ window.onload = function() {
 			case 39: // key RIGHT
 				testArr.swap(position, position%cols ? position - 1 : position);
 				break;
-			case 40:
+			case 40: // key DOWN
 				testArr.swap(position, (position - 4) < 0 ? position : position - 4);
 				break;
 			default:
@@ -26,7 +25,7 @@ window.onload = function() {
 
 		testArr.output();
 	}
-	/* Ohh, this prototypes */
+	// Fancy output in browser console
 	Array.prototype.output = function() {
 		var separator = '---------------------------------\n';
 
@@ -39,7 +38,28 @@ window.onload = function() {
 		}
 
 		console.clear();
-		console.log(separator + String(array).replace(/,/g, ""));
+		console.log(separator + String(array).replace(/,/g, ''));
+	}
+	// Creation of array and shuffling values
+	function prepareArray(number) {
+		var array = new Array(Math.pow(number, 2)),
+				count = array.length - 1,
+				random = 0;
+
+		for (var i = 0; i < count; i++) {
+			array[i] = i + 1;
+		}
+		array[array.length - 1] = '  ';
+		// This shuffling method is not correct
+		// (!) Need work
+		while(count) {
+			random = Math.floor(Math.random() * count);
+			array[random] = [array[count], array[count] = array[random]][0];
+
+			count--;
+		}
+
+		return array;
 	}
 
 	Array.prototype.swap = function(a, b) {
