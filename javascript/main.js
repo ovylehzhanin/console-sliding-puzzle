@@ -45,37 +45,47 @@ Object.prototype.shuffle = function(steps) {
 };
 
 Object.prototype.output = function() {
-	var separator = '---------------------------------\n';
+	var separator = '',
+		col = this.deckSize;
+
+	for (var i = 0; i < col; i++) {
+		separator += '--------';
+	}
+
+	separator += '-';
 
 	var array = this.deck.map(function(elem) {
 		return '\|\t' + elem + '\t\|';
 	});
 
-	for (var col = Math.sqrt(array.length), i = col -1; i < array.length; i += col) {
-		array[i] += '\n' + separator;
+	for (var j = col -1; j < array.length; j += col) {
+		array[j] += '\n' + separator + '\n';
 	}
 
 	console.clear();
-	console.log(separator + String(array).replace(/,/g, ''));
+	console.log(separator + '\n' + String(array).replace(/,/g, ''));
 };
-// Function-wrapper for contex access of Object.prototype.move()
-function makeMoveFromKey(event) {
-	game.move(event.keyCode);
-}
-
-function initGame() {
-	// mysterious code here //
-}
 
 var GameSession = function(deckSize) {
 	this.deckSize = deckSize;
 	this.deck = [];
+	this.makeMoveFromKey = function(event) {
+		this.move(event.keyCode);
+	}
 };
-// Init part
-var game = new GameSession(4);
 
-game.fill();
-game.shuffle(400);
-game.output();
+window.onload = function() {
+	var generate = document.getElementById('generate');
 
-window.addEventListener('keydown', makeMoveFromKey, false);
+	var initGame = function() {
+		var game = new GameSession(Number(document.getElementById('setDeckSize').value));
+	
+		game.fill();
+		game.shuffle(400);
+		game.output();
+	
+		window.addEventListener('keydown', game.makeMoveFromKey.bind(game), false);
+	}
+	console.log('Hey buddy!:)\nChoose your deck size and press "Generate"');
+	generate.addEventListener('click', initGame, false);
+};
