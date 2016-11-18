@@ -4,29 +4,36 @@
 	<meta charset="UTF-8">
 	<title>ConsoleBarleyBreak</title>
 	<link rel="stylesheet" href="stylesheet/main.css" class="style">
+	<link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
 	<script src="javascript/main.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<div class="container">
-			<h1 class="title">Console BarleyBreak</h1>
-			<ol>
-				<li>Open browser console for start.</li>
-				<li>
-					Generate your own deck size 
-					<div>
-						<input id="setDeckSize" type="number" value="4"><input id="generate" type="submit" value="Generate">
+	<div class="container">
+		<h1 class="title">
+			<span>
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-square fa-stack-2x"></i>
+	  				<i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+				</span> &#60;Console&#62;
+			</span> BarleyBreak</h1>
+		<ol>
+			<li>Open browser console for start. <small><em>(I recommend to use Google Chrome <i class="fa fa-chrome"></i>)</em></small></li>
+			<li>Choose your own deck size and click &#39;Generate&#39; 
+				<div class="settings">
+					<input id="setDeckSize" type="number" value="4" min="3" max="9">
+					<div class="generate-wrapper">
+						<input id="generate" type="submit" value="Generate"><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
 					</div>
-				</li>
-				<li>Use LEFT,UP,RIGHT,DOWN arrow-keys for make moves.<br><small><em>If didn't work - just click on this page to activate window events.</em></small></li>
-				<li>Enjoy ;)</li>	
-			</ol>
-			<h3>2do list</h3>
-			<ul>
-				<li>Add deck completion checking</li>
-				<li>Styles for main page</li>
-			</ul>
-		</div>
-	</div>
+				</div>
+			</li>
+			<li>Use <i class="fa fa-arrow-left"></i> LEFT, <i class="fa fa-arrow-up"></i> UP, <i class="fa fa-arrow-right"></i> RIGHT, <i class="fa fa-arrow-down"></i> DOWN arrow-keys on your keyboard for moving. <small>(<em>If <strong>didn't</strong> work - just click on this page to activate window events.</em>)</small></li>
+			<li>Enjoy ;-)</li>	
+		</ol>
+		<h3>Need 2do:</h3>
+		<ul>
+			<li>Add timer</li>
+			<li>Add deck completion checking</li>
+		</ul>
+	</div>	
 </body>
 </html>
