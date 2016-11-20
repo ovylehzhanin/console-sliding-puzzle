@@ -74,14 +74,15 @@ body {
 
 	.container .settings {
 		padding: 1em 0;
-		width: 100%;
+		margin: 0 auto;
+		width: 60%;
 		display: flex;
 		justify-content: space-around;
 	}
 
 		.container .settings input[type='number'],
-		.container .settings input[type='submit'] {
-			padding: .3em 1em;
+		.container .settings button {
+			padding: .3em .5em;
 			outline: none;
 			border: none;
 			color: #333;
@@ -97,11 +98,11 @@ body {
 			background: #fff;
 		}
 
-		.container .settings .generate-wrapper {
+		.container .settings button {
 			width: 40%;
 		}
 
-			.container .settings .generate-wrapper input[type='submit'] {
+			.container .settings button {
 				text-transform: uppercase;
 				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9db80+0,96c56f+100;Green+3D+%232 */
 				background: #a9db80; /* Old browsers */
@@ -111,18 +112,26 @@ body {
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
 			}
 
-			.container .settings .generate-wrapper input[type='submit']+.fa {
-				visibility: hidden;
-				width: 20%;
+			.container .settings button:hover {
+				color: #fff;
 			}
 
-			.container .settings .generate-wrapper input[type='submit']:active {
+			.container .settings button:active {
 				background: #ccc;
 			}
 
-			.container .settings .generate-wrapper input[type='submit']:active+.fa {
-				visibility: visible;
-			}
+				.container .settings button .fa{
+					display: none;
+				}
+
+				.container .settings button:active span {
+					display: none;
+				}
+
+				.container .settings button:active .fa {
+					display: block;
+					color: #000;
+				}
 
 	.container small {
 		font-family: 'SansPro-ExtraLightIt', sans;
