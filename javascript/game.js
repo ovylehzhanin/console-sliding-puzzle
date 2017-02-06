@@ -1,19 +1,25 @@
 (function(game) {
 	
-	function startGame() {
+	function initGame() {
 
 		return {
-			makefill: function(array, colums) {
+			fillData: function(array, colums, targetItem) {
+				
+				for (var i = 0, end = Math.pow(colums, 2); i < end; i++) {
+					array.length === end - 1 ?
+						array[i] = targetItem :
+						array[i] = i + 1;
+				}
 
 			},
 
-			makeShufle: function() {
-
-			}
+			makeShuffle: function() {}
 		};
 
 	}
 
-	game.startGame = startGame;
+	game.initGame = initGame();
+	// Render all data to console
+	function output() {}
 
 })(window.braleyBreak);

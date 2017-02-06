@@ -5,13 +5,19 @@ window.braleyBreak = {};
 	window.addEventListener('DOMContentLoaded', function() {
 		
 		game.data = {
-			items = [],
-			TARGET_ITEM = ' ',
+			items: [],
+			TARGET_ITEM: ' ',
 			colums: 4
 		};
 
-		game.output(game.data.items, game.data.colums);
+		// game.output(game.data.items);
 
+		game.initGame.fillData(
+			game.data.items,
+			game.data.colums, 
+			game.data.TARGET_ITEM);
+
+		console.log(game.data.items);
 	}, false);
 
 })(window.braleyBreak);
@@ -21,11 +27,6 @@ window.braleyBreak = {};
 // Array.prototype.swap = function (a, b) {
 // 	this[b] = [this[a], this[a] = this[b]][0];
 // };
-// // Fill empty array
-// Object.prototype.fill = function() {
-// 	for (var i = 0, deckLength = Math.pow(this.deckSize, 2) - 1; i < deckLength; i++) {
-// 		this.deck[i] = i + 1;
-// 	}	
 	
 // 	this.deck.push('  ');
 // };
