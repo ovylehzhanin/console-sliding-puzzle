@@ -1,5 +1,3 @@
-window.braleyBreak = {};
-
 (function(game) {
 
 	window.addEventListener('DOMContentLoaded', function() {
@@ -23,7 +21,7 @@ window.braleyBreak = {};
 
 	}, false);
 
-})(window.braleyBreak);
+})(window.barleyBreak);
 
 
 // // Replace two elements in array

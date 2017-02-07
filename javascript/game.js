@@ -56,4 +56,4 @@
 
 	game.output = output();
 
-})(window.braleyBreak);
+})(window.barleyBreak);
