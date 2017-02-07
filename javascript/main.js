@@ -4,15 +4,13 @@
 		
 		game.data = {
 			items: [],
-			TARGET_ITEM: ' ',
-			colums: 4
+			colums: 4,
+			TARGET_ITEM: ' '
 		};
-
-		// game.output(game.data.items);
-
-		game.initGame.fillData(
+		
+		game.fill(
 			game.data.items,
-			game.data.colums, 
+			game.data.colums,
 			game.data.TARGET_ITEM);
 
 		game.output(
