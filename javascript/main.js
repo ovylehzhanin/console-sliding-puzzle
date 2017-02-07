@@ -17,7 +17,10 @@ window.braleyBreak = {};
 			game.data.colums, 
 			game.data.TARGET_ITEM);
 
-		console.log(game.data.items);
+		game.output(
+			game.data.items,
+			game.data.colums);
+
 	}, false);
 
 })(window.braleyBreak);

@@ -20,6 +20,30 @@
 
 	game.initGame = initGame();
 	// Render all data to console
-	function output() {}
+	function output() {
+
+		return function(array, colums) {
+
+			console.log(
+				String(
+					array.map(function(element) {
+						var lineBreak = false;
+
+						if ( !((array.indexOf(element) + 1) % colums) ) {
+							lineBreak = true;
+						}								
+
+						element = '|\t' + element + '\t|';
+
+						return lineBreak ? element + '\n' : element;
+					})
+				).replace(/,/g, '')
+			);
+
+		};
+
+	}
+
+	game.output = output();
 
 })(window.braleyBreak);
