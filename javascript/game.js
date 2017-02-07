@@ -24,7 +24,15 @@
 
 		return function(array, colums) {
 
+			for (var i = 0, separator = ''; i < colums; i++) {
+				separator += '--------';
+			}
+
+			separator += '-';
+
+			console.clear();
 			console.log(
+				separator + '\n' + 
 				String(
 					array.map(function(element) {
 						var lineBreak = false;
@@ -35,7 +43,9 @@
 
 						element = '|\t' + element + '\t|';
 
-						return lineBreak ? element + '\n' : element;
+						return lineBreak ?
+							element + '\n' + separator + '\n' :
+							element;
 					})
 				).replace(/,/g, '')
 			);
