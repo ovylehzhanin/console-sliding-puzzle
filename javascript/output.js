@@ -1,7 +1,7 @@
 (function(game) {
 	
-	game.output = function(array, colums) {
-		for (var i = 0, separator = ''; i < colums; i++) {
+	game.output = function(itemsArray, matrixSize) {
+		for (var i = 0, separator = ''; i < matrixSize; i++) {
 			separator += '--------';
 		}
 
@@ -10,12 +10,12 @@
 		console.clear();
 		console.log(
 			separator +
-			array
+			itemsArray
 			
 			.map(function(element) {
 				var lineBreak = false;
 
-				if ( !((array.indexOf(element) + 1) % colums) ) {
+				if ( !((itemsArray.indexOf(element) + 1) % matrixSize) ) {
 					lineBreak = true;
 				}								
 
