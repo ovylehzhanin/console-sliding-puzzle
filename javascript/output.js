@@ -22,7 +22,7 @@
 				element = '|\t' + element + '\t|';
 
 				return lineBreak ?
-					element + '\n' + separator:
+					element + '\n' + separator :
 					element;
 			})
 			

@@ -10,6 +10,31 @@
 
 	game.shuffle = function() {} // ...later
 	
-	game.makeMove = function() {} // ...later + use swapArrayItems()
+	game.makeMove = function(keyCode, itemsArray, matrixSize, targetItem) {
+		var currentPosition = itemsArray.indexOf(targetItem),
+
+			moveToPosition = (function() {
+
+				switch(keyCode) {
+					case 37:
+						return (currentPosition + 1) % matrixSize ? 
+							currentPosition + 1 : currentPosition;
+					case 38:
+						return currentPosition < itemsArray.length - matrixSize ?
+							currentPosition + matrixSize : currentPosition
+					case 39:
+						return currentPosition % matrixSize ?
+							currentPosition - 1 : currentPosition;
+					case 40:
+						return currentPosition >= matrixSize ?
+							currentPosition - matrixSize : currentPosition;
+					default:
+						return currentPosition;
+				}
+				
+			})();
+
+		itemsArray.swap(currentPosition, moveToPosition);
+	}
 		
 })(window.barleyBreak);

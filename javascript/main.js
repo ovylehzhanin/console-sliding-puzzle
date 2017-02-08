@@ -11,12 +11,18 @@
 		game.data.matrixSize,
 		game.data.TARGET_ITEM);
 	
-	game.output(
-		game.data.items,
-		game.data.matrixSize);
-	// var test = [1, 2];
-	// console.log(test);
-	// test.swap(0, 1);
-	// console.log(test);
+	window.addEventListener('keydown', function(event) {
+		
+		game.makeMove(
+			event.keyCode,
+			game.data.items,
+			game.data.matrixSize,
+			game.data.TARGET_ITEM);
+
+		game.output(
+			game.data.items,
+			game.data.matrixSize);
+
+	}, false);
 
 })(window.barleyBreak);
