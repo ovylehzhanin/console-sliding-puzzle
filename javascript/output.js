@@ -1,6 +1,9 @@
 (function(game) {
 	
-	game.output = function(itemsArray, matrixSize) {
+	game.output = function() {
+		var matrixSize = this.appData.matrixSize;
+		var items = this.appData.items;
+		
 		for (var i = 0, separator = ''; i < matrixSize; i++) {
 			separator += '--------';
 		}
@@ -10,12 +13,11 @@
 		console.clear();
 		console.log(
 			separator +
-			itemsArray
 			
-			.map(function(element) {
+			items.map(function(element) {
 				var lineBreak = false;
 
-				if ( !((itemsArray.indexOf(element) + 1) % matrixSize) ) {
+				if ( !((items.indexOf(element) + 1) % matrixSize) ) {
 					lineBreak = true;
 				}								
 

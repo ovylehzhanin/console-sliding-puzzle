@@ -1,40 +1,54 @@
 (function(game) {
 	
-	game.fill = function(itemsArray, matrixSize, targetItem) {
-		for (var i = 0, end = Math.pow(matrixSize, 2); i < end; i++) {
-			itemsArray.length === end - 1 ?
-				itemsArray[i] = targetItem :
-				itemsArray[i] = i + 1;
+	game.appData = {
+		items: [],
+		matrixSize: 4,
+		TARGET_ITEM: ' '
+	};
+
+	game.SetMatrixSize = function(number) {
+		this.appData.matrixSize = number;
+	}
+
+	game.fill = function() {
+		
+		for (var i = 0, end = Math.pow(this.appData.matrixSize, 2); i < end; i++) {
+			this.appData.items[i] = this.appData.items.length === end - 1 ? 
+				this.appData.TARGET_ITEM : i + 1;
 		}
+
 	}
 
 	game.shuffle = function() {} // ...later
 	
-	game.makeMove = function(keyCode, itemsArray, matrixSize, targetItem) {
-		var currentPosition = itemsArray.indexOf(targetItem),
+	game.makeMove = function(keyCode) {
+		var items = this.appData.items,
+			target = this.appData.TARGET_ITEM,
+			matrixSize = this.appData.matrixSize,
 
-			moveToPosition = (function() {
+			currentIndex = items.indexOf(target),
+			moveToIndex = (function() {
 
 				switch(keyCode) {
 					case 37:
-						return (currentPosition + 1) % matrixSize ? 
-							currentPosition + 1 : currentPosition;
+						return (currentIndex + 1) % matrixSize ? 
+							currentIndex + 1 : currentIndex;
 					case 38:
-						return currentPosition < itemsArray.length - matrixSize ?
-							currentPosition + matrixSize : currentPosition
+						return currentIndex < items.length - matrixSize ?
+							currentIndex + matrixSize : currentIndex
 					case 39:
-						return currentPosition % matrixSize ?
-							currentPosition - 1 : currentPosition;
+						return currentIndex % matrixSize ?
+							currentIndex - 1 : currentIndex;
 					case 40:
-						return currentPosition >= matrixSize ?
-							currentPosition - matrixSize : currentPosition;
+						return currentIndex >= matrixSize ?
+							currentIndex - matrixSize : currentIndex;
 					default:
-						return currentPosition;
+						return currentIndex;
 				}
 				
 			})();
 
-		itemsArray.swap(currentPosition, moveToPosition);
+		items.swap(currentIndex, moveToIndex);
 	}
 		
 })(window.barleyBreak);
