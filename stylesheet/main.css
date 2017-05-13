@@ -1,34 +1,11 @@
-@font-face {
-	font-family: 'SansPro-Regular';
-	font-style: normal;
-	font-weight: normal;
-	src: url('../fonts/SansPro/SourceSansPro-Regular.otf') format('opentype');
-}
+@import url('typo.css');
 
-@font-face {
-	font-family: 'SansPro-Black';
-	font-style: normal;
-	font-weight: bold;
-	src: url('../fonts/SansPro/SourceSansPro-Black.otf') format('opentype');
-}
-
-@font-face {
-	font-family: 'SansPro-ExtraLightIt';
-	font-style: italic;
-	font-weight: normal;
-	src: url('../fonts/SansPro/SourceSansPro-ExtraLightIt.otf') format('opentype');
-}
-
-html, body, h1 {
+html, body {
 	margin: 0;
 	padding: 0;
 }
 
 body {
-	font-size: 16px;
-	line-height: 1.2;
-	width: 100%;
-	height: 100vh;
 	background: rgba(255,255,255,1);
 	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
@@ -39,100 +16,116 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
 }
 
+body {
+	height: 100vh;
+	font-size: 16px;
+	line-height: 1.2;
+}
+
 .container {
 	margin: 0 auto;
 	width: 60%;
-	min-width: 600px;
+	min-width: 500px;
 	font-family: 'SansPro-Regular', sans;
+	text-align: left;
+	font-style: normal;
+	font-weight: bold;
 }
 
-	.container h1 {
-		padding: 0.5em;
-		text-align: center;
-		font-family: 'SansPro-Black', sans;
-		font-size: 3em;
-		font-style: normal;
-		font-weight: bold;
-	}
+.container .title {
+	margin: 0;
+	padding: 0;
+	padding: 0.5em;
+	font-family: 'SansPro-Black', sans;
+	font-size: 2.5rem;
+}
 
-		.container h1 span {
-			font-size: .7em;
-			font-family: monospace;
-			font-weight: normal;
-		}
+.container .title span {
+	font-size: .7em;
+	font-weight: normal;
+}
 
-	.container ol {
-		padding: 1em;
-		width: 70%;
-		margin: inherit;
-	}
+.container .title .inner-wrapper {
+	display: inline-block;
+	padding: 0 1rem;
+	background-color: #000;
+	font-family: monospace;
+	border-radius: 3px;
+}
 
-	.container ol li {
-		font-size: 1.2em;
-		line-height: 1.6;
-	}
+.container .title .fa {
+	font-size: 1.7rem;
+}
 
-	.container .settings {
-		padding: 1em 0;
-		margin: 0 auto;
-		width: 60%;
-		display: flex;
-		justify-content: space-around;
-	}
+.container .title .fa + span {
+	color: #fff;
+}
 
-		.container .settings input[type='number'],
-		.container .settings button {
-			padding: .3em .5em;
-			outline: none;
-			border: none;
-			color: #333;
-			font-size: 1em;
-			font-family: 'SansPro-Regular', sans;
-			border-radius: 3px;
-		}
+.container ol {
+	padding: 1em;
+	width: 70%;
+	margin: 0;
+}
 
-		.container .settings input[type='number'] {
-			position: relative;
-			width: 20%;
-			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
-			background: #fff;
-		}
+.container ol li {
+	font-size: 1.2em;
+	line-height: 1.6;
+}
 
-		.container .settings button {
-			width: 40%;
-		}
+.container .settings {
+	padding: 1em 0;
+	margin: 0 auto;
+	width: 60%;
+	display: flex;
+	justify-content: space-around;
+}
 
-			.container .settings button {
-				text-transform: uppercase;
-				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9db80+0,96c56f+100;Green+3D+%232 */
-				background: #a9db80; /* Old browsers */
-				background: -moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%); /* FF3.6-15 */
-				background: -webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* Chrome10-25,Safari5.1-6 */
-				background: linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
-			}
+.container .settings input[type='number'],
+.container .settings button {
+	padding: .3em .5em;
+	outline: none;
+	border: none;
+	color: #333;
+	font-size: 1em;
+	font-family: 'sSansPro-Regular', sans;
+	border-radius: 3px;
+}
 
-			.container .settings button:hover {
-				color: #fff;
-			}
+.container .settings input[type='number'] {
+	position: relative;
+	width: 20%;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+	background: #fff;
+}
 
-			.container .settings button:active {
-				background: #ccc;
-			}
+.container .settings button {
+	width: 120px;
+	text-transform: uppercase;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9db80+0,96c56f+100;Green+3D+%232 */
+	background: #a9db80; /* Old browsers */
+	background: -moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
+}
 
-				.container .settings button .fa{
-					display: none;
-				}
+.container .settings button:hover {
+	color: #fff;
+}
 
-				.container .settings button:active span {
-					display: none;
-				}
+.container .settings button:active {
+	background: #ccc;
+}
 
-				.container .settings button:active .fa {
-					display: block;
-					color: #000;
-				}
+.container .settings button .fa { display: none; }
 
-	.container small {
-		font-family: 'SansPro-ExtraLightIt', sans;
-	}
+.container .settings button:active .fa {
+	display: block;
+	color: #000;
+}
+
+.container .settings button:active span { display: none; }
+
+.container small {
+	font-family: 'SansPro-ExtraLightIt', sans;
+}

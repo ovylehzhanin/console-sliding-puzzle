@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'SansPro-Regular';
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/SansPro/SourceSansPro-Regular.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'SansPro-Black';
+	font-style: normal;
+	font-weight: bold;
+	src: url('../fonts/SansPro/SourceSansPro-Black.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'SansPro-ExtraLightIt';
+	font-style: italic;
+	font-weight: normal;
+	src: url('../fonts/SansPro/SourceSansPro-ExtraLightIt.otf') format('opentype');
+}
