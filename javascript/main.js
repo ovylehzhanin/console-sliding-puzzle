@@ -15,8 +15,16 @@
 	}, false);
 
 	window.addEventListener('keydown', function(event) {
-		game.makeMove(event.keyCode)
-			.output();
+		
+		var _keyCode = event.keyCode,
+			matrixSize = game.getMatrixSize();
+		
+		if (matrixSize != null && _keyCode > 36 && _keyCode < 41) {
+
+			game.makeMove(event.keyCode)
+				.output();
+		}
+
 	}, false);
 
 })(window.barleyBreak);
