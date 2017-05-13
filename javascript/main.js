@@ -16,11 +16,9 @@
 
 	window.addEventListener('keydown', function(event) {
 		
-		var _keyCode = event.keyCode,
-			matrixSize = game.getMatrixSize();
+		var deckReady = game.getMatrixSize() ? true : false;
 		
-		if (matrixSize != null && _keyCode > 36 && _keyCode < 41) {
-
+		if (deckReady && event.keyCode > 36 && event.keyCode < 41) {
 			game.makeMove(event.keyCode)
 				.output();
 		}
