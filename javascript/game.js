@@ -13,6 +13,8 @@
 
 	game.fill = function() {
 		
+		this.appData.items = [];
+
 		for (var i = 0, end = Math.pow(this.appData.matrixSize, 2); i < end; i++) {
 			this.appData.items[i] = this.appData.items.length === end - 1 ? 
 				this.appData.TARGET_ITEM : i + 1;
