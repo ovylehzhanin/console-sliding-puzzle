@@ -2,12 +2,13 @@
 	
 	game.appData = {
 		items: [],
-		matrixSize: 4,
+		matrixSize: null,
 		TARGET_ITEM: ' '
 	};
 
-	game.SetMatrixSize = function(number) {
+	game.setMatrixSize = function(number) {
 		this.appData.matrixSize = number;
+		return this;
 	}
 
 	game.fill = function() {
@@ -16,6 +17,8 @@
 			this.appData.items[i] = this.appData.items.length === end - 1 ? 
 				this.appData.TARGET_ITEM : i + 1;
 		}
+
+		return this;
 
 	}
 
@@ -49,6 +52,8 @@
 			})();
 
 		items.swap(currentIndex, moveToIndex);
+
+		return this;
 	}
 		
 })(window.barleyBreak);
