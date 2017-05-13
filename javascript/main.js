@@ -1,24 +1,22 @@
 (function(game) {
 	
-	var deckSize = document.querySelector('#deckSize');
-	var generateButton = document.querySelector('#generate');
+	document.getElementById('generate').addEventListener('click', function() {
+		var deckSize = Number(document.getElementById('deckSize').value),
+			matrixSize = game.getMatrixSize();
 
-	generateButton.addEventListener('click', function() {
-		game
-			.setMatrixSize( Number(deckSize.value) )
-			.fill()
+		if (!matrixSize || matrixSize !== deckSize) {
+			game.setMatrixSize(deckSize)
+				.fill();
+		}
+
+		game.shuffle()
 			.output();
 
 	}, false);
 
 	window.addEventListener('keydown', function(event) {
-		
-		game
-			.makeMove(event.keyCode)
+		game.makeMove(event.keyCode)
 			.output();
-
 	}, false);
-
-	console.log('hello :)');
 
 })(window.barleyBreak);

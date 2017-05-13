@@ -11,8 +11,11 @@
 		return this;
 	}
 
+	game.getMatrixSize = function() {
+		return this.appData.matrixSize;
+	}
+
 	game.fill = function() {
-		
 		this.appData.items = [];
 
 		for (var i = 0, end = Math.pow(this.appData.matrixSize, 2); i < end; i++) {
@@ -21,11 +24,8 @@
 		}
 
 		return this;
-
 	}
 
-	game.shuffle = function() {} // ...later
-	
 	game.makeMove = function(keyCode) {
 		var items = this.appData.items,
 			target = this.appData.TARGET_ITEM,
@@ -58,4 +58,12 @@
 		return this;
 	}
 		
+	game.shuffle = function() {
+		for (var i = 0; i < 1000; i++ ) {
+			game.makeMove(Math.floor(Math.random() * (41 - 37) + 37));
+		}
+
+		return this;
+	}
+
 })(window.barleyBreak);
