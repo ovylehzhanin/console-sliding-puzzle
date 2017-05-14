@@ -105,3 +105,7 @@ body {
 	font-family: 'SansPro-ExtraLightIt';
 	font-size: .8rem;
 }
+
+.todo-list .done {
+	text-decoration: line-through;
+}
