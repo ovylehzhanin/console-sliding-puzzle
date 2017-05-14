@@ -20,6 +20,7 @@
 		
 		if (deckReady && event.keyCode > 36 && event.keyCode < 41) {
 			game.makeMove(event.keyCode)
+				.checkCompletion()
 				.output();
 		}
 

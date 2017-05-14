@@ -1,14 +1,18 @@
 (function(game) {
 	
 	game.output = function() {
-		var matrixSize = this.appData.matrixSize;
-		var items = this.appData.items;
+		var matrixSize = this.appData.matrixSize,
+			items = this.appData.items,
+			isComplete = this.appData.isComplete,
+			congrats = '';
 		
 		for (var i = 0, separator = ''; i < matrixSize; i++) {
 			separator += '--------';
 		}
 
 		separator += '-\n';
+
+		if (isComplete) congrats = 'Congratulations!!!!111'
 
 		console.clear();
 		console.log(
@@ -30,8 +34,11 @@
 			
 			.reduce(function(emptyString, element) {
 				return emptyString + element;
-			}, '')
+			}, '') +
+			'\n' + congrats
 		);
+
+		return this;
 	}
 
 })(window.barleyBreak);

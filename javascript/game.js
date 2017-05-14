@@ -3,7 +3,8 @@
 	game.appData = {
 		items: [],
 		matrixSize: null,
-		TARGET_ITEM: ' '
+		TARGET_ITEM: ' ',
+		isComplete: false
 	};
 
 	game.setMatrixSize = function(number) {
@@ -63,6 +64,20 @@
 			game.makeMove(Math.floor(Math.random() * (41 - 37) + 37));
 		}
 
+		return this;
+	}
+
+	game.checkCompletion = function() {
+		var array = this.appData.items.map(function(e) { return e; });
+		
+		for (var i = 0; i < array.length - 2; i++) {
+			if (array[i+1] - array[i] !== 1) {
+				this.appData.isComplete = false;
+				return this;
+			}
+		}
+
+		this.appData.isComplete = true;
 		return this;
 	}
 
