@@ -4,7 +4,8 @@
 		items: [],
 		matrixSize: null,
 		TARGET_ITEM: ' ',
-		isComplete: false
+		isComplete: false,
+		stepsCounter: 0
 	};
 
 	game.setMatrixSize = function(number) {
@@ -55,11 +56,14 @@
 			})();
 
 		items.swap(currentIndex, moveToIndex);
-
+		
 		return this;
 	}
 		
 	game.shuffle = function() {
+		this.appData.isComplete = false;
+		this.appData.stepsCounter = 0;
+
 		for (var i = 0; i < 1000; i++ ) {
 			game.makeMove(Math.floor(Math.random() * (41 - 37) + 37));
 		}
@@ -71,13 +75,17 @@
 		var array = this.appData.items.map(function(e) { return e; });
 		
 		for (var i = 0; i < array.length - 2; i++) {
-			if (array[i+1] - array[i] !== 1) {
-				this.appData.isComplete = false;
-				return this;
-			}
-		}
+			this.appData.isComplete = array[i + 1] - array[i] !== 1 ? false : true;
 
-		this.appData.isComplete = true;
+			if (!this.appData.isComplete) break;
+		}
+		
+		return this;
+	}
+
+	game.incrementSteps = function() {
+		this.appData.stepsCounter++;
+
 		return this;
 	}
 
