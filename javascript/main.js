@@ -1,12 +1,13 @@
+var barleyBreak = barleyBreak || {};
 (function(game) {
 	
 	document.getElementById('generate').addEventListener('click', function() {
 		
 		var deckSize = Number(document.getElementById('deckSize').value),
-			matrixSize = game.getMatrixSize();
+			matrixSize = game.matrixSize();
 
 		if (!matrixSize || matrixSize !== deckSize) {
-			game.setMatrixSize(deckSize)
+			game.matrixSize(deckSize)
 				.fill();
 		}
 
@@ -17,7 +18,7 @@
 
 	window.addEventListener('keydown', function(event) {
 		
-		var deckReady = game.getMatrixSize() ? true : false,
+		var deckReady = game.matrixSize(),
 			isComplete = game.appData.isComplete;
 		
 		if (!isComplete && deckReady && event.keyCode > 36 && event.keyCode < 41) {

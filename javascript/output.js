@@ -1,7 +1,8 @@
+var barleyBreak = barleyBreak || {};
 (function(game) {
 	
 	game.output = function() {
-		var matrixSize = this.appData.matrixSize,
+		var matrixSize = this.matrixSize(),
 			items = this.appData.items,
 			isComplete = this.appData.isComplete,
 			congrats = '',

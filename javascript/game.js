@@ -1,3 +1,4 @@
+var barleyBreak = barleyBreak || {};
 (function(game) {
 	
 	game.appData = {
@@ -8,12 +9,21 @@
 		stepsCounter: 0
 	};
 
-	game.setMatrixSize = function(number) {
-		this.appData.matrixSize = number;
-		return this;
-	}
+	// game.setMatrixSize = function(number) {
+	// 	this.appData.matrixSize = number;
+	// 	return this;
+	// }
 
-	game.getMatrixSize = function() {
+	// game.getMatrixSize = function() {
+	// 	return this.appData.matrixSize;
+	// }
+
+	game.matrixSize = function(_number) {
+		if (arguments.length) {
+			this.appData.matrixSize = _number;
+			return this;
+		}
+
 		return this.appData.matrixSize;
 	}
 
@@ -31,7 +41,7 @@
 	game.makeMove = function(keyCode) {
 		var items = this.appData.items,
 			target = this.appData.TARGET_ITEM,
-			matrixSize = this.appData.matrixSize,
+			matrixSize = this.matrixSize(),
 
 			currentIndex = items.indexOf(target),
 			moveToIndex = (function() {
@@ -75,7 +85,7 @@
 		var array = this.appData.items.map(function(e) { return e; });
 		
 		for (var i = 0; i < array.length - 2; i++) {
-			this.appData.isComplete = array[i + 1] - array[i] !== 1 ? false : true;
+			this.appData.isComplete = array[i + 1] - array[i] === 1;
 
 			if (!this.appData.isComplete) break;
 		}
