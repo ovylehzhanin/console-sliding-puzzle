@@ -1,4 +1,5 @@
 var barleyBreak = barleyBreak || {};
+
 (function(game) {
 	
 	document.getElementById('generate').addEventListener('click', function() {

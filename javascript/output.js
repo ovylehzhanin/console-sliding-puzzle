@@ -1,4 +1,5 @@
 var barleyBreak = barleyBreak || {};
+
 (function(game) {
 	
 	game.output = function() {
