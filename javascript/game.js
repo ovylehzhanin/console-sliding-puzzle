@@ -1,4 +1,5 @@
 var barleyBreak = barleyBreak || {};
+
 (function(game) {
 	
 	game.appData = {
@@ -8,15 +9,6 @@ var barleyBreak = barleyBreak || {};
 		isComplete: false,
 		stepsCounter: 0
 	};
-
-	// game.setMatrixSize = function(number) {
-	// 	this.appData.matrixSize = number;
-	// 	return this;
-	// }
-
-	// game.getMatrixSize = function() {
-	// 	return this.appData.matrixSize;
-	// }
 
 	game.matrixSize = function(_number) {
 		if (arguments.length) {
