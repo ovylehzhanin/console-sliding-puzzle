@@ -3,6 +3,12 @@ var barleyBreak = barleyBreak || {};
 (function(game) {
   
   game.output = function() {
+    // https://en.wikipedia.org/wiki/Box-drawing_character
+    // 
+
+    // ╗,╔,╝,╚,═,║
+    // ┓,┏,┛,┗,━,┃
+    
     var matrixSize = this.matrixSize(),
       items = this.appData.items,
       isComplete = this.appData.isComplete,
