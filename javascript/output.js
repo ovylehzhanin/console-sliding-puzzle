@@ -8,7 +8,33 @@ var barleyBreak = barleyBreak || {};
 
     // ╗,╔,╝,╚,═,║
     // ┓,┏,┛,┗,━,┃
-    
+
+    // Bold borders - bb
+    // Light borders - lb
+    // Top-left corner - tlc
+    // Top-right corner - trc
+    // Bottom-left corner - blc
+    // Bottom-right corner - brc
+    // Vertical line - vl
+    // Horizontal line - hl
+    const bb = {
+        tlc: 9556,
+        trc: 9559,
+        blc: 9562,
+        brc: 9565,
+        vl: 9553,
+        hl: 9552
+      },
+      lb = {
+        tlc: 9487,
+        trc: 9491,
+        blc: 9495,
+        brc: 9499,
+        vl: 9475,
+        hl: 9473
+      }
+
+
     var matrixSize = this.matrixSize(),
       items = this.appData.items,
       isComplete = this.appData.isComplete,
