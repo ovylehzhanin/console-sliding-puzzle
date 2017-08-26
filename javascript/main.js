@@ -17,19 +17,23 @@ var barleyBreak = barleyBreak || {};
 
   // }, false);
 
-  // window.addEventListener('keydown', function(event) {
+  window.addEventListener('keydown', function(event) {
     
-  //   var deckReady = game.matrixSize(),
-  //     isComplete = game.appData.isComplete;
+    var deckReady = game.matrixSize(),
+      isComplete = game.appData.isComplete;
     
-  //   if (!isComplete && deckReady && event.keyCode > 36 && event.keyCode < 41) {
-  //     game.makeMove(event.keyCode)
-  //       .incrementSteps()
-  //       .checkCompletion()
-  //       .output();
-  //   }
+    if (!isComplete && deckReady && event.keyCode > 36 && event.keyCode < 41) {
+      game.makeMove(event.keyCode)
+        .incrementSteps()
+        .checkCompletion()
+        .output();
+    }
 
-  // }, false);
+    if (event.keyCode > 36 && event.keyCode < 41) {
+      game.output();
+    }
+
+  }, false);
 
   game.output();
 

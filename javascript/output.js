@@ -61,16 +61,32 @@ var barleyBreak = barleyBreak || {};
     };
   };
 
-  let _getItemsRow = function(item, left, right) {};
+  let _getItemsRow = function(item, left, right) {
+    return left += (item < 10 ? item + _SPACE : item) + right;
+  };
 
   // console.log(getBorders(LB, 4).repeat(4));
   // console.log(
   //     JSON.stringify( _getBorders(_LB, 4) )
   //   );
 
-  let test = function() {
-
+  let getInnerDeck = function() {
+    
   };
+
+  let test = function() {
+    let itemBorders = _getBorders(_LB, 4),
+      topRow = itemBorders.top.repeat(4),
+      bottomRow = itemBorders.bottom.repeat(4),
+      itemsRow = testArray
+          .map(item => _getItemsRow(item, itemBorders.left, itemBorders.right))
+          .join('');
+
+    console.clear();
+    console.log(`${topRow}\n${itemsRow}\n${bottomRow}`);
+  };
+
+  test();
 
   // var matrixSize = this.matrixSize(),
   //   items = this.appData.items,
