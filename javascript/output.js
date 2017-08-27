@@ -4,13 +4,12 @@ var barleyBreak = barleyBreak || {};
 
   game.output = function() {
   // https://en.wikipedia.org/wiki/Box-drawing_character
-
   // ╗,╔,╝,╚,═,║
   // ┓,┏,┛,┗,━,┃
 
-  // Bold borders - BB
-  // Light borders - LB
-  // Empty borders - EB
+  // Deck borders - DB
+  // Item borders - IB
+  // Empty item borders - EIB
   // Top-left corner - tlc
   // Top-right corner - trc
   // Bottom-left corner - blc
@@ -22,7 +21,8 @@ var barleyBreak = barleyBreak || {};
   const _NEXT_LINE = '\n',
     _SPACE = ' ',
     _EMPTY_STRING = '';
-    _BB = {
+    _DB = {
+      lineWidth: 16,
       TLC: '╔',
       TRC: '╗',
       BLC: '╚',
@@ -30,7 +30,8 @@ var barleyBreak = barleyBreak || {};
       VL: '║',
       HL: '═'
     },
-    _LB = {
+    _IB = {
+      lineWidth: 4,
       TLC: '┏',
       TRC: '┓',
       BLC: '┗',
@@ -38,7 +39,8 @@ var barleyBreak = barleyBreak || {};
       VL: '┃',
       HL: '━'
     },
-    _EB = {
+    _EIB = {
+      lineWidth: 4,
       TLC: _SPACE,
       TRC: _SPACE,
       BLC: _SPACE,
@@ -47,46 +49,41 @@ var barleyBreak = barleyBreak || {};
       HL: _SPACE
     };
 
-  // let testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ' '];
-  let testArray = [1, 2, 3, 4];
+  let columns = game.matrixSize();
 
-  let _getBorders = function(chars, lineWidth) {
-    let line = chars.HL.repeat(lineWidth);
-    // return [`${chars.TLC}${line}${chars.TRC}`, `${chars.BLC}${line}${chars.BRC}`];
+  let _getBorders = function(drawData) {
+    let line = drawData.HL.repeat(drawData.lineWidth);
+
     return {
-      top: `${chars.TLC}${line}${chars.TRC}`,
-      bottom: `${chars.BLC}${line}${chars.BRC}`,
-      left: `${chars.VL}${_SPACE}`,
-      right: `${_SPACE}${chars.VL}`
+      top: `${drawData.TLC}${line}${drawData.TRC}`,
+      bottom: `${drawData.BLC}${line}${drawData.BRC}`,
+      left: `${drawData.VL}${_SPACE}`, 
+      right: `${_SPACE}${drawData.VL}`
     };
   };
 
-  let _getItemsRow = function(item, left, right) {
-    return left += (item < 10 ? item + _SPACE : item) + right;
+  let _getDeck = function() {
+    let array = game.appData.items,
+      borders = _getBorders(_IB),
+      i = 0,
+      end = array.length,
+      tempString = '',
+      outputArray = [];
+
+    for (i; i < end; i++) {
+      tempString += `${borders.left}${array[i] < 10 ? array[i] + _SPACE : array[i]}${borders.right}`;
+
+      if ((i + 1) % columns === 0) {
+        outputArray.push(tempString);
+        tempString = '';
+      }
+    }
+
+    return outputArray.map(item => `${borders.top.repeat(columns)}\n${item}\n${borders.bottom.repeat(columns)}\n`).join('');
   };
 
-  // console.log(getBorders(LB, 4).repeat(4));
-  // console.log(
-  //     JSON.stringify( _getBorders(_LB, 4) )
-  //   );
-
-  let getInnerDeck = function() {
-    
-  };
-
-  let test = function() {
-    let itemBorders = _getBorders(_LB, 4),
-      topRow = itemBorders.top.repeat(4),
-      bottomRow = itemBorders.bottom.repeat(4),
-      itemsRow = testArray
-          .map(item => _getItemsRow(item, itemBorders.left, itemBorders.right))
-          .join('');
-
-    console.clear();
-    console.log(`${topRow}\n${itemsRow}\n${bottomRow}`);
-  };
-
-  test();
+  console.clear();
+  console.log(_getDeck());
 
   // var matrixSize = this.matrixSize(),
   //   items = this.appData.items,

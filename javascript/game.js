@@ -1,7 +1,7 @@
 var barleyBreak = barleyBreak || {};
 
 (function(game) {
-  
+
   game.appData = {
     items: [],
     matrixSize: null,
@@ -54,14 +54,14 @@ var barleyBreak = barleyBreak || {};
           default:
             return currentIndex;
         }
-        
+
       })();
 
     items.swap(currentIndex, moveToIndex);
     
     return this;
   }
-    
+
   game.shuffle = function() {
     this.appData.isComplete = false;
     this.appData.stepsCounter = 0;
@@ -75,13 +75,13 @@ var barleyBreak = barleyBreak || {};
 
   game.checkCompletion = function() {
     var array = this.appData.items.map(function(e) { return e; });
-    
+
     for (var i = 0; i < array.length - 2; i++) {
       this.appData.isComplete = array[i + 1] - array[i] === 1;
 
       if (!this.appData.isComplete) break;
     }
-    
+
     return this;
   }
 

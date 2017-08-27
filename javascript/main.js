@@ -2,20 +2,20 @@ var barleyBreak = barleyBreak || {};
 
 (function(game) {
   
-  // document.getElementById('generate').addEventListener('click', function() {
+  document.getElementById('generate').addEventListener('click', function() {
     
-  //   var deckSize = Number(document.getElementById('deckSize').value),
-  //     matrixSize = game.matrixSize();
+    var deckSize = Number(document.getElementById('deckSize').value),
+      matrixSize = game.matrixSize();
 
-  //   if (!matrixSize || matrixSize !== deckSize) {
-  //     game.matrixSize(deckSize)
-  //       .fill();
-  //   }
+    if (!matrixSize || matrixSize !== deckSize) {
+      game.matrixSize(deckSize)
+        .fill();
+    }
 
-  //   game.shuffle()
-  //     .output();
+    game.shuffle()
+      .output();
 
-  // }, false);
+  }, false);
 
   window.addEventListener('keydown', function(event) {
     
@@ -29,12 +29,6 @@ var barleyBreak = barleyBreak || {};
         .output();
     }
 
-    if (event.keyCode > 36 && event.keyCode < 41) {
-      game.output();
-    }
-
   }, false);
-
-  game.output();
 
 })(window.barleyBreak);
