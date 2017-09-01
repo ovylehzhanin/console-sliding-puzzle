@@ -51,35 +51,41 @@ var barleyBreak = barleyBreak || {};
 
   let columns = game.matrixSize();
 
-  let _getBorders = function(drawData) {
+  let drawItem = function(drawData, item) {
     let line = drawData.HL.repeat(drawData.lineWidth);
 
     return {
       top: `${drawData.TLC}${line}${drawData.TRC}`,
-      bottom: `${drawData.BLC}${line}${drawData.BRC}`,
-      left: `${drawData.VL}${_SPACE}`, 
-      right: `${_SPACE}${drawData.VL}`
-    };
+      middle: `${drawData.VL}${_SPACE}${item < 10 ? item + _SPACE : item}${_SPACE}${drawData.VL}`,
+      bottom: `${drawData.BLC}${line}${drawData.BRC}`
+    }
   };
 
   let _getDeck = function() {
     let array = game.appData.items,
-      borders = _getBorders(_IB),
       i = 0,
       end = array.length,
-      tempString = '',
-      outputArray = [];
+      topRow = '',
+      middleRow = '',
+      bottomRow = '',
+      output = [],
+      temp;
 
     for (i; i < end; i++) {
-      tempString += `${borders.left}${array[i] < 10 ? array[i] + _SPACE : array[i]}${borders.right}`;
+      temp = drawItem(array[i] === _SPACE ? _EIB : _IB, array[i]);
 
-      if ((i + 1) % columns === 0) {
-        outputArray.push(tempString);
-        tempString = '';
+      topRow += temp.top;
+      middleRow += temp.middle;
+      bottomRow += temp.bottom;
+
+      if ( !((i + 1) % columns) ) {
+        output.push(`${topRow}\n${middleRow}\n${bottomRow}`);
+
+        topRow = middleRow = bottomRow = '';
       }
     }
-
-    return outputArray.map(item => `${borders.top.repeat(columns)}\n${item}\n${borders.bottom.repeat(columns)}\n`).join('');
+    
+    return output.join('\n');
   };
 
   console.clear();
