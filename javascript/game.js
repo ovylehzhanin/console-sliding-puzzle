@@ -7,7 +7,8 @@ var barleyBreak = barleyBreak || {};
     matrixSize: null,
     TARGET_ITEM: ' ',
     isComplete: false,
-    stepsCounter: 0
+    stepsCounter: 0,
+    targetItemIndex: 0
   };
 
   game.matrixSize = function(_number) {
@@ -17,6 +18,10 @@ var barleyBreak = barleyBreak || {};
     }
 
     return this.appData.matrixSize;
+  };
+
+  game.getTargetIndex = function() {
+    return this.appData.targetItemIndex;
   }
 
   game.fill = function() {
@@ -28,13 +33,12 @@ var barleyBreak = barleyBreak || {};
     }
 
     return this;
-  }
+  };
 
   game.makeMove = function(keyCode) {
     var items = this.appData.items,
       target = this.appData.TARGET_ITEM,
       matrixSize = this.matrixSize(),
-
       currentIndex = items.indexOf(target),
       moveToIndex = (function() {
 
@@ -57,10 +61,14 @@ var barleyBreak = barleyBreak || {};
 
       })();
 
+    // Test
+    this.appData.targetItemIndex = currentIndex;
+    // end
+
     items.swap(currentIndex, moveToIndex);
     
     return this;
-  }
+  };
 
   game.shuffle = function() {
     this.appData.isComplete = false;
@@ -71,7 +79,7 @@ var barleyBreak = barleyBreak || {};
     }
 
     return this;
-  }
+  };
 
   game.checkCompletion = function() {
     var array = this.appData.items.map(function(e) { return e; });
@@ -83,12 +91,12 @@ var barleyBreak = barleyBreak || {};
     }
 
     return this;
-  }
+  };
 
   game.incrementSteps = function() {
     this.appData.stepsCounter++;
 
     return this;
-  }
+  };
 
 })(window.barleyBreak);

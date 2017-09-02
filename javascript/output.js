@@ -2,135 +2,122 @@ var barleyBreak = barleyBreak || {};
 
 (function(game) {
 
-  game.output = function() {
-  // https://en.wikipedia.org/wiki/Box-drawing_character
-  // ╗,╔,╝,╚,═,║
-  // ┓,┏,┛,┗,━,┃
+  game.output = function(index) {
+    // https://en.wikipedia.org/wiki/Box-drawing_character
+    // ╗,╔,╝,╚,═,║
+    // ┓,┏,┛,┗,━,┃
 
-  // Deck borders - DB
-  // Item borders - IB
-  // Empty item borders - EIB
-  // Top-left corner - tlc
-  // Top-right corner - trc
-  // Bottom-left corner - blc
-  // Bottom-right corner - brc
-  // Vertical line - vl
-  // Horizontal line - hl
+    // Deck borders - DB
+    // Item borders - IB
+    // Empty item borders - EIB
+    // Top-left corner - tlc
+    // Top-right corner - trc
+    // Bottom-left corner - blc
+    // Bottom-right corner - brc
+    // Vertical line - vl
+    // Horizontal line - hl
 
-  // Drawing chars:
-  const _NEXT_LINE = '\n',
-    _SPACE = ' ',
-    _EMPTY_STRING = '';
-    _DB = {
-      lineWidth: 16,
-      TLC: '╔',
-      TRC: '╗',
-      BLC: '╚',
-      BRC: '╝',
-      VL: '║',
-      HL: '═'
-    },
-    _IB = {
-      lineWidth: 4,
-      TLC: '┏',
-      TRC: '┓',
-      BLC: '┗',
-      BRC: '┛',
-      VL: '┃',
-      HL: '━'
-    },
-    _EIB = {
-      lineWidth: 4,
-      TLC: _SPACE,
-      TRC: _SPACE,
-      BLC: _SPACE,
-      BRC: _SPACE,
-      VL: _SPACE,
-      HL: _SPACE
+    // Drawing chars:
+    const _NEXT_LINE = '\n',
+      _SPACE = ' ',
+      _EMPTY_STRING = '';
+      _DB = {
+        lineWidth: 16,
+        TLC: '╔',
+        TRC: '╗',
+        BLC: '╚',
+        BRC: '╝',
+        VL: '║',
+        HL: '═'
+      },
+      _IB = {
+        lineWidth: 4,
+        TLC: '┏',
+        TRC: '┓',
+        BLC: '┗',
+        BRC: '┛',
+        VL: '┃',
+        HL: '━'
+      },
+      _EIB = {
+        lineWidth: 4,
+        TLC: _SPACE,
+        TRC: _SPACE,
+        BLC: _SPACE,
+        BRC: _SPACE,
+        VL: _SPACE,
+        HL: _SPACE
+      };
+
+    let matrixSize = game.matrixSize();
+
+    let getBorders = function(drawData) {
+      let line = drawData.HL.repeat(drawData.lineWidth);
+
+      return {
+        top: `${drawData.TLC}${line}${drawData.TRC}`,
+        left: `${drawData.VL}${_SPACE}`,
+        right: `${_SPACE}${drawData.VL}`,
+        bottom: `${drawData.BLC}${line}${drawData.BRC}`
+      };
     };
 
-  let columns = game.matrixSize();
+    let drawItem = function(itemBorders, item) {
+      return `${itemBorders.left}${item < 10 ? item + _SPACE : item}${itemBorders.right}`;
+    };
 
-  let drawItem = function(drawData, item) {
-    let line = drawData.HL.repeat(drawData.lineWidth);
+    let arrayReplaceAt = function(array, indexToReplace, valueToInsert) {
+      let arrayCopy = array.map(item => item);
+      arrayCopy.splice(indexToReplace, 1, valueToInsert);
 
-    return {
-      top: `${drawData.TLC}${line}${drawData.TRC}`,
-      middle: `${drawData.VL}${_SPACE}${item < 10 ? item + _SPACE : item}${_SPACE}${drawData.VL}`,
-      bottom: `${drawData.BLC}${line}${drawData.BRC}`
-    }
-  };
+      return arrayCopy;
+    };
 
-  let _getDeck = function() {
-    let array = game.appData.items,
-      i = 0,
-      end = array.length,
-      topRow = '',
-      middleRow = '',
-      bottomRow = '',
-      output = [],
-      temp;
+    let drawDeck = function() {
+      let itemBorders = getBorders(_IB),
+        emptyItemBorders = getBorders(_EIB),
+        deckBorders = getBorders(_DB),
 
-    for (i; i < end; i++) {
-      temp = drawItem(array[i] === _SPACE ? _EIB : _IB, array[i]);
+        items = game.appData.items,
+        
+        emptyItemRow = Math.floor(index / matrixSize),
+        itemsRowTop = Array(matrixSize).fill(itemBorders.top),
+        itemsRowBottom = Array(matrixSize).fill(itemBorders.bottom),
+        
+        deckRowTop = '',
+        deckRowBottom = '',
+        
+        output = [],
+        realOutput = []; // :DDD
 
-      topRow += temp.top;
-      middleRow += temp.middle;
-      bottomRow += temp.bottom;
+      output = items.map(function(item) {
+        let empty = item === _SPACE;
 
-      if ( !((i + 1) % columns) ) {
-        output.push(`${topRow}\n${middleRow}\n${bottomRow}`);
+        return drawItem(empty ? emptyItemBorders : itemBorders, item);
+      });
 
-        topRow = middleRow = bottomRow = '';
+      console.log(output.join(''));
+
+      for (let i = 0, end = output.length; i < end; i += matrixSize) {
+
+        let data = [itemsRowTop, output.slice(i, i + matrixSize), itemsRowBottom];
+
+        if (i === emptyItemRow) {
+          data[0] = arrayReplaceAt(data[0], index - i, emptyItemBorders.top);;
+          data[2] = arrayReplaceAt(data[2], index - i, emptyItemBorders.bottom);;
+        }
+
+        console.log(data);
+
+        // realOutput.push(data.map(item => item.join('')));
+        realOutput.push( data.map(item => item.join('')) );
       }
-    }
-    
-    return output.join('\n');
+
+      return realOutput;
+    };
+
+    console.clear();
+    console.log( drawDeck() );
   };
-
-  console.clear();
-  console.log(_getDeck());
-
-  // var matrixSize = this.matrixSize(),
-  //   items = this.appData.items,
-  //   isComplete = this.appData.isComplete,
-  //   congrats = '',
-  //   steps = 'Steps:\t' + this.appData.stepsCounter;
-
-  // for (var i = 0, separator = ''; i < matrixSize; i++) {
-  //   separator += '--------';
-  // }
-
-  // separator += '-\n';
-
-  // if (isComplete) congrats = 'C-O-N-G-R-A-T-U-L-A-T-I-O-N-S!!!!!1';
-
-  // console.clear();
-  // console.log(
-  //   separator +
-
-  //   items.map(function(element) {
-  //     var lineBreak = false;
-
-  //     if ( !((items.indexOf(element) + 1) % matrixSize) ) {
-  //       lineBreak = true;
-  //     }               
-
-  //     element = '|\t' + element + '\t|';
-
-  //     return lineBreak ?
-  //       element + '\n' + separator :
-  //       element;
-  //   })
-
-  //   .reduce(function(emptyString, element) {
-  //     return emptyString + element;
-  //   }, '') +
-  //   '\n' + steps +
-  //   '\n' + congrats
-  // );
-
-  // return this;
-  }
 
 })(window.barleyBreak);
