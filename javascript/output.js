@@ -108,8 +108,8 @@ var barleyBreak = barleyBreak || {};
         ];
 
         if (i === emptyItemRow) {
-          data[0] = arrayReplaceAt(data[0], index - i * matrixSize, emptyItemBorders.top);
-          data[2] = arrayReplaceAt(data[2], index - i * matrixSize, emptyItemBorders.bottom);
+          data[0] = data[0].replaceItemAt(index - i * matrixSize, emptyItemBorders.top);
+          data[2] = data[2].replaceItemAt(index - i * matrixSize, emptyItemBorders.bottom);
         }
 
         data.map(item => realOutput.push(item.join('')));
