@@ -22,7 +22,7 @@ var barleyBreak = barleyBreak || {};
       _SPACE = ' ',
       _EMPTY_STRING = '';
       _DB = {
-        lineWidth: 16,
+        lineWidth: 26,
         TLC: '╔',
         TRC: '╗',
         BLC: '╚',
@@ -79,41 +79,43 @@ var barleyBreak = barleyBreak || {};
         deckBorders = getBorders(_DB),
 
         items = game.appData.items,
+
+        index = items.indexOf(_SPACE),
         
         emptyItemRow = Math.floor(index / matrixSize),
         itemsRowTop = Array(matrixSize).fill(itemBorders.top),
         itemsRowBottom = Array(matrixSize).fill(itemBorders.bottom),
         
-        deckRowTop = '',
-        deckRowBottom = '',
+        deckRowTop = deckBorders.top,
+        deckRowBottom = deckBorders.bottom,
         
-        output = [],
+        renderedItems = [],
         realOutput = []; // :DDD
 
-      output = items.map(function(item) {
+      renderedItems = items.map(function(item) {
         let empty = item === _SPACE;
 
         return drawItem(empty ? emptyItemBorders : itemBorders, item);
       });
 
-      console.log(output.join(''));
+      console.log([index, emptyItemRow, index - emptyItemRow * matrixSize, deckRowTop, deckRowBottom]);
 
-      for (let i = 0, end = output.length; i < end; i += matrixSize) {
-
-        let data = [itemsRowTop, output.slice(i, i + matrixSize), itemsRowBottom];
+      for (let i = 0; i < matrixSize; i++) {
+        let data = [
+          itemsRowTop,
+          renderedItems.slice(i * matrixSize, i * matrixSize + matrixSize),
+          itemsRowBottom
+        ];
 
         if (i === emptyItemRow) {
-          data[0] = arrayReplaceAt(data[0], index - i, emptyItemBorders.top);;
-          data[2] = arrayReplaceAt(data[2], index - i, emptyItemBorders.bottom);;
+          data[0] = arrayReplaceAt(data[0], index - i * matrixSize, emptyItemBorders.top);
+          data[2] = arrayReplaceAt(data[2], index - i * matrixSize, emptyItemBorders.bottom);
         }
 
-        console.log(data);
-
-        // realOutput.push(data.map(item => item.join('')));
-        realOutput.push( data.map(item => item.join('')) );
+        data.map(item => realOutput.push(item.join('')));
       }
 
-      return realOutput;
+      return `${deckRowTop}\n${realOutput.map(item => `${deckBorders.left}${item}${deckBorders.right}`).join('\n')}\n${deckRowBottom}`;
     };
 
     console.clear();

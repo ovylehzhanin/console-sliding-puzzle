@@ -61,10 +61,6 @@ var barleyBreak = barleyBreak || {};
 
       })();
 
-    // Test
-    this.appData.targetItemIndex = currentIndex;
-    // end
-
     items.swap(currentIndex, moveToIndex);
     
     return this;

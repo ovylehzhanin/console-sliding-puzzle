@@ -13,7 +13,7 @@ var barleyBreak = barleyBreak || {};
     }
 
     game.shuffle()
-      .output(game.getTargetIndex());
+      .output();
 
   }, false);
 
@@ -26,7 +26,7 @@ var barleyBreak = barleyBreak || {};
       game.makeMove(event.keyCode)
         .incrementSteps()
         .checkCompletion()
-        .output(game.getTargetIndex());
+        .output();
     }
 
   }, false);
