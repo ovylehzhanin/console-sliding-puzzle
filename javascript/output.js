@@ -98,7 +98,7 @@ var barleyBreak = barleyBreak || {};
         return drawItem(empty ? emptyItemBorders : itemBorders, item);
       });
 
-      console.log([index, emptyItemRow, index - emptyItemRow * matrixSize, deckRowTop, deckRowBottom]);
+      // console.log([index, emptyItemRow, index - emptyItemRow * matrixSize, deckRowTop, deckRowBottom]);
 
       for (let i = 0; i < matrixSize; i++) {
         let data = [
