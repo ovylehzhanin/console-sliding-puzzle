@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/alexeyvylegzhanin/console-barley-break/issues"
   },
-  "homepage": "https://github.com/alexeyvylegzhanin/console-barley-break#readme"
+  "homepage": "https://github.com/alexeyvylegzhanin/console-barley-break#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "gulp": "^3.9.1"
+  }
 }
