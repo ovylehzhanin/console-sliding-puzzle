@@ -1,5 +1,10 @@
 import gulp from 'gulp';
+import pug from 'gulp-pug';
 
-gulp.task('default', () => {
-  console.log('hello from gulp+babel');
+gulp.task('pug', () => {
+  return gulp.src('./source/index.pug')
+    .pipe(pug( {pretty: true} ))
+    .pipe(gulp.dest('./dist/'));
 });
+
+gulp.task('default', ['pug']);
