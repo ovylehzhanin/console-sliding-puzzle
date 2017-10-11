@@ -1,3 +1,8 @@
+import { Greetings } from './greetings';
+
+let greet = new Greetings;
+greet.sayHello();
+/*
 var barleyBreak = barleyBreak || {};
 
 (function(game) {
@@ -32,3 +37,4 @@ var barleyBreak = barleyBreak || {};
   }, false);
 
 })(window.barleyBreak);
+*/
