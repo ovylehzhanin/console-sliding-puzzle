@@ -6,6 +6,9 @@ class Greetings {
 
   sayHello() {
     console.log(this.message);
+    console.log('hello');
+    console.log('hello 1');
+
   }
 }
 
