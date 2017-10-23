@@ -1,3 +1,10 @@
+function arraySwapItems = function(array, a, b) {}
+
+function arrayReplaceItemAt = function(array, index, newItemValue) {}
+
+export {}
+
+/*
 Array.prototype.swap = function(a, b) {
   this[a] = [this[b], this[b] = this[a]][0];
 };
@@ -8,3 +15,4 @@ Array.prototype.replaceItemAt = function(index, newItem) {
 
   return copy;
 };
+*/
