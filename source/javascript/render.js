@@ -1,3 +1,7 @@
+class Render {}
+
+export { Render }
+/*
 var barleyBreak = barleyBreak || {};
 
 (function(game) {
@@ -123,3 +127,4 @@ var barleyBreak = barleyBreak || {};
   };
 
 })(window.barleyBreak);
+*/

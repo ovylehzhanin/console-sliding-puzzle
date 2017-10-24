@@ -1,7 +1,14 @@
-import { Greetings } from './greetings';
+import { GameModel } from './game-model';
+import { U } from './constants';
 
-let greet = new Greetings;
-greet.sayHello();
+function main() {
+  let gameModel = new GameModel(4);
+
+  console.log(gameModel.fillItemsArray());
+  console.log(U['2550'], U['2551']);
+}
+
+window.addEventListener('DOMContentLoaded', main, false);
 /*
 var barleyBreak = barleyBreak || {};
 

@@ -1,3 +1,24 @@
+class GameModel {
+  constructor(matrixSize) {
+    this.matrixSize = matrixSize;
+    this.items = [];
+  }
+
+  fillItemsArray() {
+    let array = [],
+      index = 0,
+      end = Math.pow(this.matrixSize, 2);
+
+    for (index; index < end; index += 1) {
+      array[index] = array.length === end - 1 ? '@' : index + 1;
+    }
+
+    return this.items.concat(array);
+  }
+}
+
+export { GameModel }
+/*
 var barleyBreak = barleyBreak || {};
 
 (function(game) {
@@ -96,3 +117,4 @@ var barleyBreak = barleyBreak || {};
   };
 
 })(window.barleyBreak);
+*/
