@@ -1,16 +1,22 @@
+import { TARGET_ITEM } from './constants'
+
 class GameModel {
   constructor(matrixSize) {
     this.matrixSize = matrixSize;
     this.items = [];
   }
 
-  fillItemsArray() {
+  _calculateItemsQty() {
+    return Math.pow(this.matrixSize, 2);
+  }
+
+  prepareItemsArray() {
     let array = [],
       index = 0,
-      end = Math.pow(this.matrixSize, 2);
+      end = this._calculateItemsQty();
 
     for (index; index < end; index += 1) {
-      array[index] = array.length === end - 1 ? '@' : index + 1;
+      array[index] = array.length === end - 1 ? TARGET_ITEM : index + 1;
     }
 
     return this.items.concat(array);

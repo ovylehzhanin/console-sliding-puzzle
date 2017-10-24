@@ -8,8 +8,6 @@ var barleyBreak = barleyBreak || {};
 
   game.output = function(index) {
     // https://en.wikipedia.org/wiki/Box-drawing_character
-    // ╗,╔,╝,╚,═,║
-    // ┓,┏,┛,┗,━,┃
 
     // Deck borders - DB
     // Item borders - IB
