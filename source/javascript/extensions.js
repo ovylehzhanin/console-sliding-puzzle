@@ -1,18 +1,13 @@
-function arraySwapItems = function(array, a, b) {}
+// 
+// Replace two item indexes in array
+function _swap(array, a, b) {}
+//
+// Replace item value at 'index'
+function _replace(array, index, newItemValue) {}
+//
+// Create string from 'charCode'
+function _sfcc(charCode) {
+  return String.fromCharCode(charCode);
+}
 
-function arrayReplaceItemAt = function(array, index, newItemValue) {}
-
-export {}
-
-/*
-Array.prototype.swap = function(a, b) {
-  this[a] = [this[b], this[b] = this[a]][0];
-};
-
-Array.prototype.replaceItemAt = function(index, newItem) {
-  let copy = this.map(item => item);
-  copy.splice(index, 1, newItem);
-
-  return copy;
-};
-*/
+export { _swap, _replace, _sfcc }

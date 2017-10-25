@@ -1,11 +1,12 @@
 import { GameModel } from './game-model';
-import { U } from './constants';
+import { DRAW_DATA } from './constants';
 
 function main() {
+  // Testing
   let gameModel = new GameModel(4);
-
-  console.log(gameModel.fillItemsArray());
-  console.log(U['2550'], U['2551']);
+  console.log( gameModel.prepareItemsArray() );
+  console.log( JSON.stringify(DRAW_DATA) );
+  // end
 }
 
 window.addEventListener('DOMContentLoaded', main, false);
