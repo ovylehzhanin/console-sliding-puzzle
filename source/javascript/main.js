@@ -1,15 +1,19 @@
 import { GameModel } from './game-model';
 import { DRAW_DATA } from './constants';
+import { Render } from './render';
 
 function main() {
   // Testing
-  let gameModel = new GameModel(4);
-  console.log( gameModel.prepareItemsArray() );
-  console.log( JSON.stringify(DRAW_DATA) );
+  let gameModel = new GameModel(4),
+    render = new Render(gameModel);
+  
+  gameModel.prepareItemsArray();
+  render.render();
   // end
 }
 
 window.addEventListener('DOMContentLoaded', main, false);
+
 /*
 var barleyBreak = barleyBreak || {};
 

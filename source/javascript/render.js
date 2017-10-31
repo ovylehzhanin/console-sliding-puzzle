@@ -1,4 +1,40 @@
-class Render {}
+import { _sfcc } from './extensions';
+import { DRAW_DATA, SPACE } from './constants';
+
+class Render {
+  constructor(gameModel) {
+    this._gameModel = gameModel;
+    this.row = [];
+    this.rowWithEmptyItem = [];
+  }
+
+  _getBorders(drawData) {
+    let line = _sfcc(drawData.HL).repeat(drawData.lineWidth);
+
+    return {
+      // top
+      t: `${_sfcc(drawData.TL)}${line}${_sfcc(drawData.TR)}`,
+      // left
+      l: `${_sfcc(drawData.VL)}${SPACE}`,
+      // right
+      r: `${SPACE}${_sfcc(drawData.VL)}`,
+      // bottom
+      b: `${_sfcc(drawData.BL)}${line}${_sfcc(drawData.BR)}`
+    };
+  }
+
+  _getRow(itemsRow) {
+    
+    return;
+  }
+
+  render() {
+    console.log( this._gameModel.items );
+    console.log( JSON.stringify(this._getBorders(DRAW_DATA.DECK)) );
+    console.log( JSON.stringify(this._getBorders(DRAW_DATA.ITEM)) );
+    console.log( JSON.stringify(this._getBorders(DRAW_DATA.ITEM_EMPTY)) );
+  }
+}
 
 export { Render }
 /*

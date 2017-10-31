@@ -19,7 +19,7 @@ class GameModel {
       array[index] = array.length === end - 1 ? TARGET_ITEM : index + 1;
     }
 
-    return this.items.concat(array);
+    this.items = [].concat(array);
   }
 }
 
