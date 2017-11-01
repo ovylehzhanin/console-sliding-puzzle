@@ -2,37 +2,40 @@ import { _sfcc } from './extensions';
 import { DRAW_DATA, SPACE } from './constants';
 
 class Render {
-  constructor(gameModel) {
-    this._gameModel = gameModel;
-    this.row = [];
-    this.rowWithEmptyItem = [];
+  constructor(model) {
+    this._model = model;
+    this._columns = model.matrixSize;
   }
 
-  _getBorders(drawData) {
-    let line = _sfcc(drawData.HL).repeat(drawData.lineWidth);
+  _getBorders(data) {
+    let line = data.HL.repeat(data.lineWidth);
 
     return {
       // top
-      t: `${_sfcc(drawData.TL)}${line}${_sfcc(drawData.TR)}`,
+      // t: [].fill(`${data.TL}${line}${data.TR}`, 0, 3),
+      t: [].fill(`${data.TL}${line}${data.TR}`, 0, 3),
       // left
-      l: `${_sfcc(drawData.VL)}${SPACE}`,
+      l: `${data.VL}${SPACE}`,
       // right
-      r: `${SPACE}${_sfcc(drawData.VL)}`,
+      r: `${SPACE}${data.VL}`,
       // bottom
-      b: `${_sfcc(drawData.BL)}${line}${_sfcc(drawData.BR)}`
+      // b: [].fill(`${data.BL}${line}${data.BR}`, 0, 3)
+      b: [].fill(`${data.BL}${line}${data.BR}`, 0, 3)
+
     };
   }
 
-  _getRow(itemsRow) {
-    
-    return;
+  _prepareItems(array) {
+    let itemBorders = this._getBorders(DRAW_DATA.ITEM);
+            
+    return itemBorders;  
   }
 
   render() {
-    console.log( this._gameModel.items );
-    console.log( JSON.stringify(this._getBorders(DRAW_DATA.DECK)) );
-    console.log( JSON.stringify(this._getBorders(DRAW_DATA.ITEM)) );
-    console.log( JSON.stringify(this._getBorders(DRAW_DATA.ITEM_EMPTY)) );
+    let items = this._model.items;
+
+    console.log( this._prepareItems(items) );
+    console.log( this._columns );
   }
 }
 
