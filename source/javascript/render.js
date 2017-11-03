@@ -1,5 +1,5 @@
-import { _sfcc } from './extensions';
-import { DRAW_DATA, SPACE } from './constants';
+import { _sfcc, _arrayRepeat } from './extensions';
+import { DRAW_DATA, SPACE, TAGET_ITEM } from './constants';
 
 class Render {
   constructor(model) {
@@ -12,30 +12,32 @@ class Render {
 
     return {
       // top
-      // t: [].fill(`${data.TL}${line}${data.TR}`, 0, 3),
-      t: [].fill(`${data.TL}${line}${data.TR}`, 0, 3),
+      t: _arrayRepeat(`${data.TL}${line}${data.TR}`, this._columns),
       // left
       l: `${data.VL}${SPACE}`,
       // right
       r: `${SPACE}${data.VL}`,
       // bottom
-      // b: [].fill(`${data.BL}${line}${data.BR}`, 0, 3)
-      b: [].fill(`${data.BL}${line}${data.BR}`, 0, 3)
-
+      b: _arrayRepeat(`${data.BL}${line}${data.BR}`, this._columns)
     };
   }
 
   _prepareItems(array) {
     let itemBorders = this._getBorders(DRAW_DATA.ITEM);
-            
-    return itemBorders;  
+    let testIndex = 14;
+    let row = Math.floor(testIndex / this._columns);          
+    let col = testIndex - this._columns * row;
+    // finish it...
+    // let emptyItemBorders = _replace(itemBorders, col, );
+    // return itemBorders;  
+    
+    return [row, col];
   }
 
   render() {
     let items = this._model.items;
 
-    console.log( this._prepareItems(items) );
-    console.log( this._columns );
+    console.log( this._prepareItems() );
   }
 }
 
