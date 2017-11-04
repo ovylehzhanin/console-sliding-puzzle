@@ -4,6 +4,7 @@ class GameModel {
   constructor(matrixSize) {
     this.matrixSize = matrixSize;
     this.items = [];
+    this.currentIndex;
   }
 
   _calculateItemsQty() {
