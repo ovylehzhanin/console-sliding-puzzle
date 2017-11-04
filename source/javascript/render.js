@@ -1,4 +1,4 @@
-import { _sfcc, _arrayRepeat } from './extensions';
+import { _swap, _sfcc, _arrayRepeat } from './extensions';
 import { DRAW_DATA, SPACE, TAGET_ITEM } from './constants';
 
 class Render {
@@ -37,6 +37,7 @@ class Render {
   render() {
     let items = this._model.items;
 
+    console.log( _swap([1, 2, 3, 4], 0, 1) );
     console.log( this._prepareItems() );
   }
 }

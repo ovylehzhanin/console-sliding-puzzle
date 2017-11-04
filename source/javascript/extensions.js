@@ -1,6 +1,10 @@
 // 
 // Replace two item indexes in array
-function _swap(array, a, b) {}
+function _swap(array, a, b) {
+  array[a] = [array[b], array[b] = array[a]][0];
+
+  return array;
+}
 //
 // Replace item value at 'index'
 function _replace(array, index, newItemValue) {
