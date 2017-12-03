@@ -11,7 +11,7 @@ const DRAW_DATA = {
   //  'TR' - Top-right corner
   //  'BL' - Bottom-left corner
   //  'BR' - Bottom-right corner
-  // ****
+
   // Default deck borders
   // ═ , ║ , ╔ , ╗ , ╚ , ╝
   DECK: {
@@ -20,7 +20,7 @@ const DRAW_DATA = {
     BL: '╚', BR: '╝',
     lineWidth: 26
   },
-  // ****
+
   // Default item borders
   // ━ , ┃ , ┏ , ┓, ┗ , ┛
   ITEM: {
@@ -29,7 +29,7 @@ const DRAW_DATA = {
     BL: '┗', BR: '┛',
     lineWidth: 4
   },
-
+  
   ITEM_EMPTY: {
     HL: SPACE, VL: SPACE,
     TL: SPACE, TR: SPACE,
@@ -39,5 +39,7 @@ const DRAW_DATA = {
 }; 
 
 const TARGET_ITEM = SPACE;
+const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, TARGET_ITEM];
+const LINE_BREAK = '\n';
 
-export { DRAW_DATA, TARGET_ITEM, SPACE }
+export { DRAW_DATA, TARGET_ITEM, ITEMS, SPACE, LINE_BREAK }

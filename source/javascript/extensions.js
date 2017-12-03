@@ -1,11 +1,8 @@
-// 
 // Replace two item indexes in array
-function _swap(array, a, b) {
-  array[a] = [array[b], array[b] = array[a]][0];
+Array.prototype._swap = function(a, b) {
+  this[a] = [this[b], this[b] = this[a]][0];
+};
 
-  return array;
-}
-//
 // Replace item value at 'index'
 function _replace(array, index, newItemValue) {
   // add code here...
@@ -20,4 +17,5 @@ function _arrayRepeat(value, size) {
 
   return arr;
 }
-export { _swap, _replace, _arrayRepeat }
+
+export { _replace, _arrayRepeat }
