@@ -24,13 +24,30 @@ class Render {
     return `${itemBorders.left}${_item}${itemBorders.right}`;
   }
 
-  _drawDeck(items) {
+  _drawItemsLine() {}
+
+  _drawDeck(items, deckBorders, itemBorders) {
     let itemsBatch = this._matrixSize,
-      output = [];
+      output = [],
+      lines = [];
 
     for (let i = 0, end = items.length; i < end; i += itemsBatch) {
-      output = output.concat(items.slice(i, i + itemsBatch), [LINE_BREAK]);
+      lines = lines.concat(
+        deckBorders.left, [itemBorders.top]._repeat(4),
+        deckBorders.right, [LINE_BREAK],
+        deckBorders.left,
+        items.slice(i, i + itemsBatch),
+        deckBorders.right, [LINE_BREAK],
+        deckBorders.left, [itemBorders.bottom]._repeat(4),
+        deckBorders.right, [LINE_BREAK]
+      );
     }
+
+    output = output.concat(
+      deckBorders.top, [LINE_BREAK],
+      lines,
+      deckBorders.bottom
+    );
 
     return output.join('');
   }
@@ -41,7 +58,7 @@ class Render {
 
     let preparedItems = this._items.map( item => this._drawItem(item, itemBorders) );
 
-    return this._drawDeck(preparedItems);
+    return this._drawDeck(preparedItems, deckBorders, itemBorders);
   }
 
   render() {
