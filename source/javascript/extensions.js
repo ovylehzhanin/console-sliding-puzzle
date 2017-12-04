@@ -20,7 +20,7 @@ Array.prototype._repeat = function (size) {
 
 function _arrayRepeat(value, size) {
   let arr = [];
-  
+
   for (let i = 0; i < size; i += 1) {
     arr[i] = value;
   }

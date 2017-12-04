@@ -13,11 +13,28 @@ function main() {
     let keyCode = event.keyCode,
       direction = '';
 
-    if (keyCode >= 37 && keyCode < 40) {
-      if (keyCode === 37) direction = 'LEFT';
-      if (keyCode === 38) direction = 'UP';
-      if (keyCode === 39) direction = 'RIGHT';
-      if (keyCode === 40) direction = 'DOWN';
+    if (keyCode >= 37 && keyCode <= 40) {
+      switch (keyCode) {
+        case 37:
+          direction = 'right';
+          break;
+
+        case 38:
+          direction = 'down';
+          break;
+
+        case 39:
+          direction = 'left';
+          break;
+
+        case 40:
+          direction = 'up';
+          break;
+
+        default:
+          break;
+      }
+
       gameModel.replaceItems(direction);
       render.render();
     }

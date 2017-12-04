@@ -3,6 +3,7 @@ import { DRAW_DATA, SPACE, TAGET_ITEM, LINE_BREAK } from './constants';
 
 class Render {
   constructor(model) {
+    this._model = model;
     this._items = model.items;
     this._matrixSize = model.matrixSize;
   }
@@ -20,6 +21,7 @@ class Render {
 
   _drawItem(item, itemBorders) {
     let _item = item < 10 ? item + SPACE : item;
+    let borders;
 
     return `${itemBorders.left}${_item}${itemBorders.right}`;
   }
