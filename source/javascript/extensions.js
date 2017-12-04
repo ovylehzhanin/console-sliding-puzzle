@@ -4,9 +4,13 @@ Array.prototype._swap = function (a, b) {
 };
 
 // Replace item value at 'index'
-function _replace(array, index, newItemValue) {
-  // add code here...
-}
+Array.prototype._replace = function (index, newItem) {
+  const DELETE_COUNT = 1;
+  let copy = this.slice();
+  copy.splice(index, DELETE_COUNT, newItem);
+
+  return copy;
+};
 
 Array.prototype._repeat = function (size) {
   let result = [];
@@ -16,16 +20,4 @@ Array.prototype._repeat = function (size) {
   }
 
   return result;
-}
-
-function _arrayRepeat(value, size) {
-  let arr = [];
-
-  for (let i = 0; i < size; i += 1) {
-    arr[i] = value;
-  }
-
-  return arr;
-}
-
-export { _replace, _arrayRepeat }
+};
