@@ -1,3 +1,4 @@
+import * as extenstions from './extensions';
 import { GameModel } from './game-model';
 import { DRAW_DATA } from './constants';
 import { Render } from './render';

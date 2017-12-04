@@ -5,12 +5,16 @@ class GameModel {
     this.items = ITEMS;
     this.matrixSize = 4;
     this._targetIntex = null;
+    this.targetRow = null;
+    this.targetColumn = null;
     this.TARGET_ITEM = TARGET_ITEM;
     this.possibleMoves = { up: null, left: null, right: null, down: null };
   }
 
   _findTarget() {
     this._targetIndex = this.items.indexOf(this.TARGET_ITEM);
+    this.targetRow = Math.floor(this._targetIndex / this.matrixSize);
+    this.targetColumn = this._targetIndex - this.targetRow * this.matrixSize;
   }
 
   _findPossibleMoves() {
