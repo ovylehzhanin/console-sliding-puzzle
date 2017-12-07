@@ -1,11 +1,7 @@
 import { DRAW_DATA, SPACE, TARGET_ITEM, LINE_BREAK } from './constants';
 
 class Render {
-  constructor(model) {
-    this._model = model;
-    this._items = model.items;
-    this._matrixSize = model.matrixSize;
-  }
+  constructor() {}
 
   _drawBorders(data) {
     let line = data.HL.repeat(data.lineWidth);  
@@ -73,10 +69,7 @@ class Render {
     return this._drawDeck(this._model.items, deckBorders, itemBorders, emptyItemBorders);
   }
 
-  render() {
-    console.clear();
-    console.log(this._drawItems(DRAW_DATA));
-  }
+  render() {}
 }
 
 export { Render }

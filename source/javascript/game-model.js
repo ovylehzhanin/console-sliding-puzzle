@@ -30,6 +30,11 @@ class GameModel {
     this.possibleMoves.down = ti >= il - ms ? null : ti + ms;
   }
 
+  setMatrixSize(value) {
+    this.matrixSize = value;
+    console.log(this.matrixSize);
+  }
+
   replaceItems(direction) {
     if (this.possibleMoves[direction] != null) {
       this.items._swap(this._targetIndex, this.possibleMoves[direction]);
