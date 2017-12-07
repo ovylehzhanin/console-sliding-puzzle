@@ -23,7 +23,7 @@ gulp.task('js-build', () => {
 });
 
 
-gulp.task('static-server', [/* 'pug', */ 'js-build'], done => {
+gulp.task('static-server', ['pug', 'js-build'], done => {
   sync.init({
     server: './dist'  
   });
@@ -31,15 +31,14 @@ gulp.task('static-server', [/* 'pug', */ 'js-build'], done => {
 });
 
 
-gulp.task('reload', [/* 'pug', */ 'js-build'], done => {
+gulp.task('reload', ['pug', 'js-build'], done => {
   sync.reload();
   done();
 });
 
 
 gulp.task('watcher', ['static-server'], () => {
-  gulp.watch([/* './source/**.*pug', */ './source/javascript/**.*js'], [/* 'pug', */ 'js-build', 'reload']);
+  gulp.watch(['./source**.*pug', './source/javascript/**.*js'], ['pug', 'js-build', 'reload']);
 });
 
-/* gulp.task('default', ['js-build', 'pug', 'static-server', 'watcher']); */
-gulp.task('default', ['js-build', 'static-server', 'watcher']);
+gulp.task('default', ['js-build', 'pug', 'static-server', 'watcher']);
