@@ -38,8 +38,15 @@ const DRAW_DATA = {
   }
 }; 
 
+const KEY_CODES = {
+  LEFT_ARROW: 37,
+  UP_ARROW: 38,
+  RIGHT_ARROW: 39,
+  DOWN_ARROW: 40
+};
+
 const TARGET_ITEM = SPACE;
 const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, TARGET_ITEM];
 const LINE_BREAK = '\n';
 
-export { DRAW_DATA, TARGET_ITEM, ITEMS, SPACE, LINE_BREAK }
+export { DRAW_DATA, TARGET_ITEM, ITEMS, SPACE, LINE_BREAK, KEY_CODES }
