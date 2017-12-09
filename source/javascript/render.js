@@ -14,62 +14,66 @@ class Render {
     };
   }
 
-  _addSideBordersToItem(item, leftItemBorder, rightItemBorder) {
-    let _item = item < 10 ? item + SPACE : item;
+  _drawItem(item) {
+    let left = this._itemBorders.left,
+      right = this._itemBorders.right;
 
-    return `${leftItemBorder}${_item}${rightItemBorder}`;
-  }
-
-  _drawItemsLines(items, deckBorderLeft, deckBorderRight, itemBorders, emptyItemBorders) {
-    let targetRow = this._model.targetRow,
-      targetColumn = this._model.targetColumn,
-      batchSize = this._model.matrixSize;
-
-    let topItemBorders = [itemBorders.top]._repeat(batchSize),
-      bottomItemBorders = [itemBorders.bottom]._repeat(batchSize);
-
-    let result = [], l = null, r = null, t = null, b = null;
-
-    for (let i = 0, row = 0, end = items.length; i < end; i += batchSize) {
-
-      if ( row == targetRow ) {
-        t = topItemBorders._replace(targetColumn, emptyItemBorders.top);
-        b = bottomItemBorders._replace(targetColumn, emptyItemBorders.bottom);
-      } else {
-        t = topItemBorders;
-        b = bottomItemBorders;
-      }
-
-      row++;
-
-      result = result.concat( 
-        t, LINE_BREAK,
-        items.slice(i, i + batchSize)
-            .map(item => { 
-              [l, r] = item === TARGET_ITEM ? [emptyItemBorders.left, emptyItemBorders.right] : [itemBorders.left, itemBorders.right];
-
-              return this._addSideBordersToItem(item, l, r);
-            }), LINE_BREAK, 
-        b, LINE_BREAK
-      );
+    if (item === TARGET_ITEM) {
+      left = this._emptyItemBorders.left;
+      right = this._emptyItemBorders.right;
     }
 
-    return result;
+    item = item < 10 ? item + SPACE : item;
+
+    return `${left}${item}${right}`;
   }
 
-  _drawDeck(items, deckBorders, itemBorders, emptyItemBorders) {
-    return [].concat(this._drawItemsLines(items, deckBorders.left, deckBorders.right, itemBorders, emptyItemBorders)).join('');
+  _drawItemsRow(row, rowIndex) {
+    let t = this._horizontalBordersForItemsRow.top,
+      b = this._horizontalBordersForItemsRow.bottom;
+
+    if (rowIndex === this._targetRow) {
+      t = this._horizontalBordersForItemsRow.top._replace(this._targetColumn, this._emptyItemBorders.top);
+      b = this._horizontalBordersForItemsRow.bottom._replace(this._targetColumn, this._emptyItemBorders.bottom);
+    }
+
+    return [].concat(
+      this._deckBorders.left, t, this._deckBorders.right,
+      LINE_BREAK,
+      this._deckBorders.left, row.map(item => this._drawItem(item)), this._deckBorders.right,
+      LINE_BREAK, 
+      this._deckBorders.left, b, this._deckBorders.right,
+      LINE_BREAK
+    ).join('');
   }
 
-  _drawItems(drawData) {
-    let itemBorders = this._drawBorders(DRAW_DATA.ITEM),
-      deckBorders = this._drawBorders(DRAW_DATA.DECK),
-      emptyItemBorders = this._drawBorders(DRAW_DATA.ITEM_EMPTY);
-
-    return this._drawDeck(this._model.items, deckBorders, itemBorders, emptyItemBorders);
+  _drawScene(items) {
+    return [].concat(
+      this._deckBorders.top, LINE_BREAK,
+      items.map((row, rowIndex) => this._drawItemsRow(row, rowIndex)).join(''),
+      this._deckBorders.bottom
+    ).join('');
   }
 
-  render() {}
+  init(drawData, matrixSize) {
+    this._itemBorders = this._drawBorders(drawData.ITEM);
+    this._emptyItemBorders = this._drawBorders(drawData.ITEM_EMPTY);
+    this._deckBorders = this._drawBorders(drawData.DECK);
+    this._horizontalBordersForItemsRow = {
+      top: [this._itemBorders.top]._repeat(matrixSize),
+      bottom: [this._itemBorders.bottom]._repeat(matrixSize)
+    };
+    this._targetRow = null;
+    this._targetColumn = null;
+  }
+
+  render(items, targetPosition) {
+    this._targetRow = targetPosition[0];
+    this._targetColumn = targetPosition[1];
+
+    console.clear();
+    console.log(this._drawScene(items));
+  }
 }
 
 export { Render }

@@ -1,6 +1,10 @@
 // Replace two item indexes in array
 Array.prototype._swap = function (a, b) {
-  this[a] = [this[b], this[b] = this[a]][0];
+  let a0 = a[0], a1 = a[1],
+    b0 = b[0], b1 = b[1];
+
+  this[a0][a1] = [this[b0][b1], this[b0][b1] = this[a0][a1]][0];
+  return [b0, b1];
 };
 
 // Replace item value at 'index'

@@ -5,12 +5,11 @@ import { Render } from './render';
 import { Controller } from './controller';
 
 function main() {
-  // Testing
   let gameModel = new GameModel(),
-    render = new Render(),
+    render = new Render(DRAW_DATA),
     controller = new Controller(gameModel, render);
 
-  controller.bindEvents();
+  controller.init();
 }
 
 window.addEventListener('DOMContentLoaded', main, false);

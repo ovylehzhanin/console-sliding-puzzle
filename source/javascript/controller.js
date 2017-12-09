@@ -1,4 +1,4 @@
-import { KEY_CODES } from './constants';
+import { DRAW_DATA, KEYS } from './constants';
 
 class Controller {
   constructor(model, render) {
@@ -6,50 +6,52 @@ class Controller {
     this._render = render;
   }
 
-  makeMove(event) {
-    let keyCode = event.keyCode,
-      direction = '',
-      [LEFT, UP, RIGHT, DOWN] = [KEY_CODES.LEFT_ARROW, KEY_CODES.UP_ARROW, KEY_CODES.RIGHT_ARROW, KEY_CODES.DOWN_ARROW];
+  _cacheDOM() {
+    return {
+      matrixSizeInput: document.getElementById('matrixSize'),
+      startButton: document.getElementById('start')
+    };
+  }
 
-    if (keyCode >= LEFT && keyCode <= DOWN) {
-      switch (keyCode) {
-        case LEFT:
+  _moveItems(event) {
+    let keyCode = event.keyCode,
+      direction = '';
+
+    if (keyCode >= KEYS.LEFT && keyCode <= KEYS.DOWN) {
+      switch(keyCode) {
+        case KEYS.LEFT:
           direction = 'right';
           break;
 
-        case UP:
+        case KEYS.UP:
           direction = 'down';
           break;
 
-        case RIGHT:
+        case KEYS.RIGHT:
           direction = 'left';
           break;
 
-        case DOWN:
-          direction = 'up';
+        case KEYS.DOWN:
+          direction = 'top';
           break;
 
         default:
           break;
       }
 
-      console.log(direction);
-      // this_model.replaceItems(direction);
+      this._model.replaceItems(direction);
+      this._render.render(this._model.getItems(), this._model.targetItemPosition);
     }
   }
 
-  setMatrixSize() {
-    let matrixSizeInput = document.getElementById('matrixSize'),
-      inputValue = Number(matrixSizeInput.value);
-      
-    this._model.setMatrixSize(inputValue);
-  }  
+  _bindEvents() {
+    window.addEventListener('keydown', this._moveItems.bind(this), false);
+  }
 
-  bindEvents() {
-    let startButton = document.getElementById('start');
-
-    window.addEventListener('keydown', this.makeMove, false);
-    startButton.addEventListener('click', this.setMatrixSize.bind(this), false);
+  init() {
+    this._model._findPossibleMoves();
+    this._render.init(DRAW_DATA, this._model.matrixSize);
+    this._bindEvents();
   }
 }
 

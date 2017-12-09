@@ -1,43 +1,35 @@
-import { TARGET_ITEM, ITEMS } from './constants'
+import { TARGET_ITEM, DEFAULTS } from './constants'
 
 class GameModel {
   constructor() {
-    this.items = ITEMS;
-    this.matrixSize = 4;
-    this._targetIntex = null;
-    this.targetRow = null;
-    this.targetColumn = null;
-    this.TARGET_ITEM = TARGET_ITEM;
-    this.possibleMoves = { up: null, left: null, right: null, down: null };
+    this.items = DEFAULTS.ITEMS;
+    this.matrixSize = DEFAULTS.MATRIX_SIZE;
+    this.targetItemPosition = [3, 3];
+    this._possibleMoves = { left: [], top: [], right: [], down: [] };
   }
 
-  _findTarget() {
-    this._targetIndex = this.items.indexOf(this.TARGET_ITEM);
-    this.targetRow = Math.floor(this._targetIndex / this.matrixSize);
-    this.targetColumn = this._targetIndex - this.targetRow * this.matrixSize;
+  getItems() {
+    return this.items;
   }
 
   _findPossibleMoves() {
-    this._findTarget();
+    let row = this.targetItemPosition[0],
+      column = this.targetItemPosition[1]
 
-    let ti = this._targetIndex,
-      ms = this.matrixSize,
-      il = this.items.length;
-
-    this.possibleMoves.up = ti < ms ? null : ti - ms;
-    this.possibleMoves.left = ( ti === 0 || !(ti % ms) ) ? null : ti - 1;
-    this.possibleMoves.right = ( ti === (il - 1) || !((ti + 1) % ms ) ) ? null : ti + 1;
-    this.possibleMoves.down = ti >= il - ms ? null : ti + ms;
-  }
-
-  setMatrixSize(value) {
-    this.matrixSize = value;
-    console.log(this.matrixSize);
+    this._possibleMoves.left = [row, column - 1];
+    this._possibleMoves.top = [row - 1, column];
+    this._possibleMoves.right = [row, column + 1];
+    this._possibleMoves.down = [row + 1, column];
   }
 
   replaceItems(direction) {
-    if (this.possibleMoves[direction] != null) {
-      this.items._swap(this._targetIndex, this.possibleMoves[direction]);
+    let positionIndex = this._possibleMoves[direction],
+      positionRow = positionIndex[0],
+      positionColumn = positionIndex[1],
+      item = this.items[positionRow] ? this.items[positionRow][positionColumn] : undefined;
+
+    if (item) {
+      this.targetItemPosition = this.items._swap(this.targetItemPosition, positionIndex);
     }
 
     this._findPossibleMoves();
