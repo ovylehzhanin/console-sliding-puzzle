@@ -14,12 +14,28 @@ class GameModel {
 
   _findPossibleMoves() {
     let row = this.targetItemPosition[0],
-      column = this.targetItemPosition[1]
+      column = this.targetItemPosition[1];
 
     this._possibleMoves.left = [row, column - 1];
     this._possibleMoves.top = [row - 1, column];
     this._possibleMoves.right = [row, column + 1];
     this._possibleMoves.down = [row + 1, column];
+  }
+
+  _checkCompletion() {
+    let oneDimensional = [],
+      complete = false;
+
+    this.getItems()
+      .forEach(row => oneDimensional = oneDimensional.concat(row));
+
+    for (let i = 0, end = oneDimensional.length; i < end - 2; i += 1) {
+      complete = oneDimensional[i + 1] - oneDimensional[i] === 1;
+
+      if (!complete) break;
+    }
+
+    console.log(complete);
   }
 
   replaceItems(direction) {

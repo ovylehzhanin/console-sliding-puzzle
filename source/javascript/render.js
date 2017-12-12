@@ -44,7 +44,8 @@ class Render {
       LINE_BREAK, 
       this._deckBorders.left, b, this._deckBorders.right,
       LINE_BREAK
-    ).join('');
+    )
+    .join('');
   }
 
   _drawScene(items) {
@@ -52,7 +53,8 @@ class Render {
       this._deckBorders.top, LINE_BREAK,
       items.map((row, rowIndex) => this._drawItemsRow(row, rowIndex)).join(''),
       this._deckBorders.bottom
-    ).join('');
+    )
+    .join('');
   }
 
   init(drawData, matrixSize) {
