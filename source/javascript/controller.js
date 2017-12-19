@@ -1,6 +1,6 @@
 import { DRAW_DATA, KEYS } from './constants';
 
-class Controller {
+export default class Controller {
   constructor(model, render) {
     this._model = model;
     this._render = render;
@@ -40,7 +40,6 @@ class Controller {
       direction = this._getDirectionFromKeyCode(keyCode, KEYS);
       this._model.replaceItems(direction);
       this._render.render(this._model.getItems(), this._model.targetItemPosition);
-      this._model._checkCompletion();
     }
   }
 
@@ -68,5 +67,3 @@ class Controller {
     this._bindEvents();
   }
 }
-
-export { Controller }

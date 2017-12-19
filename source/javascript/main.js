@@ -1,8 +1,8 @@
 import * as extenstions from './extensions';
-import { GameModel } from './game-model';
+import GameModel from './game-model';
 import { DRAW_DATA } from './constants';
-import { Render } from './render';
-import { Controller } from './controller';
+import Render from './render';
+import Controller from './controller';
 
 function main() {
   let gameModel = new GameModel(),

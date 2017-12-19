@@ -1,6 +1,6 @@
 import { DRAW_DATA, SPACE, TARGET_ITEM, LINE_BREAK } from './constants';
 
-class Render {
+export default class Render {
   constructor() {}
 
   _drawBorders(data) {
@@ -77,5 +77,3 @@ class Render {
     console.log(this._drawScene(items));
   }
 }
-
-export { Render }

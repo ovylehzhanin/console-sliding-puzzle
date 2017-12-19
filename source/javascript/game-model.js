@@ -1,6 +1,6 @@
 import { TARGET_ITEM, DEFAULTS } from './constants'
 
-class GameModel {
+export default class GameModel {
   constructor() {
     this.items = DEFAULTS.ITEMS;
     this.matrixSize = DEFAULTS.MATRIX_SIZE;
@@ -34,8 +34,6 @@ class GameModel {
 
       if (!complete) break;
     }
-
-    console.log(complete);
   }
 
   replaceItems(direction) {
@@ -48,8 +46,7 @@ class GameModel {
       this.targetItemPosition = this.items._swap(this.targetItemPosition, positionIndex);
     }
 
+    this._checkCompletion();
     this._findPossibleMoves();
   }
 }
-
-export { GameModel }
