@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/alexeyvylegzhanin/console-barley-break#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babelify": "^7.3.0",
@@ -28,7 +30,9 @@
     "gulp-pug": "^3.3.0",
     "gulp-uglify": "^3.0.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
   "babel": {
     "presets": [
